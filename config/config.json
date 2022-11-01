@@ -1,0 +1,31 @@
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "mrhb_comp_bot_russian",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "dialectOptions": { "supportBigNumbers": true },
+    "pool": { "max": 10, "min": 0, "acquire": 3e4, "idle": 1e4 },
+    "query": { "raw": true },
+    "define": {
+      "charset": "utf8mb4",
+      "collate": "utf8mb4_unicode_ci"
+    }
+  },
+  "production": {
+    "username": "root",
+    "password": "This@2804",
+    "database": "mrhb_comp_bot_russian",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "dialectOptions": { "supportBigNumbers": true },
+    "logging": false,
+    "pool": { "max": 10, "min": 0, "acquire": 3e4, "idle": 1e4 },
+    "query": { "raw": true },
+    "define": {
+      "charset": "utf8mb4",
+      "collate": "utf8mb4_unicode_ci"
+    }
+  }
+}
