@@ -79,9 +79,13 @@ bot.onText(/^\/start/, async (message) => {
     //   // caption: text,
     // });
 
-    bot.sendVideo(message.chat.id, `BAACAgIAAxkBAALzRWNhH6CmaEoYKwABvAHFyrL3f2CFgAACmiEAAplcgUqqbW1KEWWWBCoE`, {
-      caption: text,
-    });
+    bot.sendPhoto(
+      message.chat.id,
+      `AgACAgIAAxkBAALzZ2Nqa87QmDOwuyqcpXu2XyrT-anbAAIcvzEbf1xQS22ahGr2x5cGAQADAgADeQADKwQ`,
+      {
+        caption: text,
+      }
+    );
   }
 });
 
@@ -94,31 +98,35 @@ MRHBDeFi запустил реферальную кампанию в Telegram д
 
 Телеграм MRHB для сообщества в России и СНГ: https://t.me/marhabadefi_russia 
  
-Пригласите друзей в чат Telegram, чтобы выиграть токены MRHB
+Пригласите друзей в чат Telegram, чтобы выиграть токены MRHB. 
 
 Для начала посетите нашего бота Telegram по ссылке ниже и следуйте инструкциям на экране. Выполняйте простые задания и получайте награды
 
-Первый приз = 500 MRHB
-Второй приз = 300 MRHB
-Третий приз = 200 MRHB
-Топ 50 = 1500 токенов MRHB будут распределены поровну.
+Структура вознаграждения (токены будут выплачены в MRHB):
+1-ое место - 150 USDT
+2-ое место - 50 USDT 
+3-е место - 25 USDT  
  
 ➡️ Готовы начать? Нажмите на ссылку: https://t.me/mrhb_comp_bot
 
-➡️ Член сообщества с наибольшим количеством рефералов выиграет 500 токенов MRHB.
+➡️ Член сообщества с наибольшим количеством рефералов выиграет 150 USDT 
 
 ➡️ Победитель будет объявлен через 15 дней. Так что начинайте распространять свои реферальные ссылки!`;
 
-  bot.sendVideo(groupDetails.id, `BAACAgIAAxkBAALzRWNhH6CmaEoYKwABvAHFyrL3f2CFgAACmiEAAplcgUqqbW1KEWWWBCoE`, {
-    disable_notification: true,
-    disable_web_page_preview: true,
-    caption: text,
-  });
+  bot.sendVideo(
+    groupDetails.id,
+    `AgACAgIAAxkBAALzZ2Nqa87QmDOwuyqcpXu2XyrT-anbAAIcvzEbf1xQS22ahGr2x5cGAQADAgADeQADKwQ`,
+    {
+      disable_notification: true,
+      disable_web_page_preview: true,
+      caption: text,
+    }
+  );
 }
 
-// sendCompMessage();
+sendCompMessage();
 
-// setInterval(sendCompMessage, 1000 * 60 * 60 * 5);
+setInterval(sendCompMessage, 1000 * 60 * 60 * 5);
 
 async function reconcile() {
   const users = await newUsers.findAll({
