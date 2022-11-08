@@ -113,7 +113,7 @@ MRHBDeFi запустил реферальную кампанию в Telegram д
 
 ➡️ Победитель будет объявлен через 15 дней. Так что начинайте распространять свои реферальные ссылки!`;
 
-  bot.sendVideo(
+  bot.sendPhoto(
     groupDetails.id,
     `AgACAgIAAxkBAALzZ2Nqa87QmDOwuyqcpXu2XyrT-anbAAIcvzEbf1xQS22ahGr2x5cGAQADAgADeQADKwQ`,
     {
