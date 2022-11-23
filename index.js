@@ -24,7 +24,7 @@ bot.onText(/^\/start/, async (message) => {
   if (time > 1640995200000)
     return bot.sendMessage(
       message.chat.id,
-      `Thanks for showing interest in the telegram referral program, the referral program has now ended.`
+      `Благодарим за участие в реферальной кампании в телеграм сообществе MRHB России и СНГ. Реферальная кампания окончена.`
     );
   if (refById) {
     const user = await oldUsers.findOne({ where: { id: message.from.id } });
@@ -393,67 +393,67 @@ bot.onText(/^\/toprefs/, async (message) => {
   });
 });
 
-// async function usernames() {
-//   const data = await newUsers.findAll({
-//     where: {
-//       status: true,
-//     },
-//     limit: 1000,
-//     attributes: ['ref_by_id', [sequelize.fn('count', sequelize.col('*')), 'count']],
-//     group: [['ref_by_id']],
-//     order: sequelize.literal(`count(*) DESC`),
-//   });
-//   let text = `Top Community Referral Users\n\n`;
-//   if (data.length > 0) {
-//     let promises = data.map((el) => bot.getChat(el['ref_by_id']));
-//     const resolved = await Promise.allSettled(promises);
-//     let userDetails = {};
-//     let usernames = {};
-//     resolved.map((el) => {
-//       if (el.value) {
-//         let name = el.value['first_name'].split(' ');
-//         let temp = name.filter((el) => !el.toLowerCase().includes('t.me') && !el.includes('@'));
-//         userDetails[el.value.id] = temp.join(' ');
-//         usernames[el.value.id] = el.value.username;
-//       }
-//     });
-//     // let count = 0;
-//     let users = [];
-//     const Json2csvParser = require('json2csv').Parser;
-//     const fs = require('fs');
-//     let text = ``;
-//     for (let i = 0, count = 0; i < data.length; i++) {
-//       if (userDetails[data[i]['ref_by_id']]) {
-//         // text += `*${++count}.* [${userDetails[data[i]['ref_by_id']]}](tg://user?id=${data[i]['ref_by_id']}) - ${data[i]['count']}\n`;
-//         users.push({
-//           rank: ++count,
-//           name: userDetails[data[i]['ref_by_id']],
-//           username: usernames[data[i]['ref_by_id']],
-//           tgId: data[i]['ref_by_id'],
-//           count: data[i]['count'],
-//         });
-//       }
-//     }
-//     const fields = Object.keys(users[0]);
-//     const opts = { fields };
-//     const parser = new Json2csvParser(opts);
-//     const csv = parser.parse(users);
-//     // return console.log(text);
-//     fs.writeFileSync('Referral_bounty.csv', csv, 'binary');
-//     await bot.sendDocument(402048679, 'Referral_bounty.csv');
-//     console.log(users);
-//   } else {
-//     text += `No users participated`;
-//   }
+async function usernames() {
+  const data = await newUsers.findAll({
+    where: {
+      status: true,
+    },
+    limit: 1000,
+    attributes: ['ref_by_id', [sequelize.fn('count', sequelize.col('*')), 'count']],
+    group: [['ref_by_id']],
+    order: sequelize.literal(`count(*) DESC`),
+  });
+  let text = `Top Community Referral Users\n\n`;
+  if (data.length > 0) {
+    let promises = data.map((el) => bot.getChat(el['ref_by_id']));
+    const resolved = await Promise.allSettled(promises);
+    let userDetails = {};
+    let usernames = {};
+    resolved.map((el) => {
+      if (el.value) {
+        let name = el.value['first_name'].split(' ');
+        let temp = name.filter((el) => !el.toLowerCase().includes('t.me') && !el.includes('@'));
+        userDetails[el.value.id] = temp.join(' ');
+        usernames[el.value.id] = el.value.username;
+      }
+    });
+    // let count = 0;
+    let users = [];
+    const Json2csvParser = require('json2csv').Parser;
+    const fs = require('fs');
+    let text = ``;
+    for (let i = 0, count = 0; i < data.length; i++) {
+      if (userDetails[data[i]['ref_by_id']]) {
+        // text += `*${++count}.* [${userDetails[data[i]['ref_by_id']]}](tg://user?id=${data[i]['ref_by_id']}) - ${data[i]['count']}\n`;
+        users.push({
+          rank: ++count,
+          name: userDetails[data[i]['ref_by_id']],
+          username: usernames[data[i]['ref_by_id']],
+          tgId: data[i]['ref_by_id'],
+          count: data[i]['count'],
+        });
+      }
+    }
+    const fields = Object.keys(users[0]);
+    const opts = { fields };
+    const parser = new Json2csvParser(opts);
+    const csv = parser.parse(users);
+    // return console.log(text);
+    fs.writeFileSync('Referral_bounty.csv', csv, 'binary');
+    await bot.sendDocument(402048679, 'Referral_bounty.csv');
+    console.log(users);
+  } else {
+    text += `No users participated`;
+  }
 
-//   console.log('got here');
-//   // bot.sendMessage(-562456172, text, { parse_mode: 'Markdown' });
-//   await bot.sendMessage(402048679, text, { parse_mode: 'Markdown' });
+  console.log('got here');
+  // bot.sendMessage(-562456172, text, { parse_mode: 'Markdown' });
+  await bot.sendMessage(402048679, text, { parse_mode: 'Markdown' });
 
-//   // 402048679;
-// }
+  // 402048679;
+}
 
-// usernames();
+usernames();
 
 async function checkIfMember(id) {
   const nonMemberStatuses = ['left', 'kicked'];
