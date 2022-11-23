@@ -20,12 +20,12 @@ bot.onText(/^\/start/, async (message) => {
   log(message);
   const refById = message.text.split(' ')[1];
 
-  // const time = Date.now();
-  // if (time > 1640995200000)
-  //   return bot.sendMessage(
-  //     message.chat.id,
-  //     `Thanks for showing interest in the telegram referral program, the referral program has now ended.`
-  //   );
+  const time = Date.now();
+  if (time > 1640995200000)
+    return bot.sendMessage(
+      message.chat.id,
+      `Thanks for showing interest in the telegram referral program, the referral program has now ended.`
+    );
   if (refById) {
     const user = await oldUsers.findOne({ where: { id: message.from.id } });
     if (user) {
